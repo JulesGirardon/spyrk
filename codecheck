@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Dossiers à checker
-TARGETS="app tests"
+TARGETS="src tests"
 
 echo "=== Lancement de flake8 (style PEP8) ==="
-flakecheck $TARGETS
+flake8 $TARGETS
 FLAKE8_EXIT=$?
 
 echo
@@ -25,7 +25,7 @@ ISORT_EXIT=$?
 echo
 echo "=== Lancement des tests avec pytest (et couverture de code) ==="
 export PYTHONPATH=$(pwd)
-pytest --cov=app --cov-report=term-missing
+pytest --cov=src --cov-report=term-missing
 PYTEST_EXIT=$?
 
 echo

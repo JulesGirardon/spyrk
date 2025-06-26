@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Répertoires à formater
-TARGETS="app tests"
+TARGETS="src tests"
 
 echo "=== Lancement de black (formatage automatique) ==="
 black $TARGETS

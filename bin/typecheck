@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Répertoires à analyser
-TARGETS="app tests"
+TARGETS="src tests"
 
 echo "=== Lancement de mypy (vérification de types statiques) ==="
 mypy $TARGETS
