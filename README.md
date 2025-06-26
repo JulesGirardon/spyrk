@@ -1,6 +1,6 @@
 # Spyrk
 
-Spyrk est un projet Python conçu pour faciliter le développement et les tests.
+Spyrk is a Python project designed to facilitate development and TDD practice.
 
 # Installation
 
@@ -10,41 +10,52 @@ cd spyrk
 ./install
 ```
 
-## Prérequis
+## Requirements
 
-- Python 3.9 ou supérieur
+- Python 3.9 or higher
 - Git
 
-## Activer l'environnement 
+## Activate the environment
 
 ```bash
 source .venv/bin/activate
 ```
 
-## Tests unitaires
+## Commands
 
-Les tests unitaires suivent les principes du développement piloté par les tests (TDD).
+Here are the available commands in the `bin` directory:
+
+- `bin/clearcache`: Clear the application cache.
+- `bin/tests`: Run all tests.
+- `bin/typecheck`: Perform type checking using mypy.
+- `bin/flakecheck`: Check code style using flake8.
+- `bin/importcheck`: Verify import order using isort.
+- `bin/formatcheck`: Check code formatting.
+
+## Unit Tests
+
+Unit tests follow the principles of Test-Driven Development (TDD).
 
 ```bash
 pytest
 ```
 
-## Qualité
+## Quality
 
-Quelques indicateurs intéressants :
+Some interesting indicators:
 
-- mypy pour la vérification des types
-- pytest pour les tests et la couverture des tests
-- flake8 pour le style de code
-- isort pour les imports
+- mypy for type checking
+- pytest for tests and coverage
+- flake8 for code style
+- isort for imports
 
-Vérification rapide avec :
+Quick check with:
 
 ```bash
 ./codecheck
 ```
 
-Vérifiez les tests et la couverture des tests avec :
+Check tests and coverage with:
 
 ```bash
 pytest --cov=src --cov-report=html
