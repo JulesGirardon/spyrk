@@ -6,7 +6,7 @@ set +a  # désactive export automatique
 
 echo "Lancement des tests avec pytest et couverture de code..."
 
-pytest --cov=app --cov-report=html "$@"
+pytest --cov=src --cov-report=html "$@"
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then

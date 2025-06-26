@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Répertoire à analyser
-TARGETS="app tests"
+TARGETS="src tests"
 
 echo "=== Lancement de flake8 (style PEP8) ==="
-flakecheck $TARGETS
+flake8 $TARGETS
 EXIT_CODE=$?
 
 echo

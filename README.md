@@ -5,12 +5,10 @@ Spyrk est un projet Python conçu pour faciliter le développement et les tests.
 # Installation
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:JulesGirardon/Spyrk.git
 cd spyrk
-./install --profile devlocal
+./install
 ```
-
-# Contribuer à Spyrk
 
 ## Prérequis
 
@@ -22,7 +20,7 @@ cd spyrk
 Les tests unitaires suivent les principes du développement piloté par les tests (TDD).
 
 ```bash
-pytest tests/unit
+pytest tests
 ```
 
 ## Qualité
