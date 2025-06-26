@@ -15,12 +15,18 @@ cd spyrk
 - Python 3.9 ou supérieur
 - Git
 
+## Activer l'environnement 
+
+```bash
+source .venv/bin/activate
+```
+
 ## Tests unitaires
 
 Les tests unitaires suivent les principes du développement piloté par les tests (TDD).
 
 ```bash
-pytest tests
+pytest
 ```
 
 ## Qualité
