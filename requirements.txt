@@ -1,0 +1,11 @@
+python-dotenv
+
+# Tests
+pytest
+pytest-cov
+
+# Code format
+flake8
+mypy
+black
+isort

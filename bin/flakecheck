@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Répertoire à analyser
+TARGETS="app tests"
+
+echo "=== Lancement de flake8 (style PEP8) ==="
+flakecheck $TARGETS
+EXIT_CODE=$?
+
+echo
+
+if [ $EXIT_CODE -eq 0 ]; then
+  echo "flake8 : Aucun problème détecté ✅"
+else
+  echo "flake8 : Des problèmes de style ont été détectés ❌"
+fi
+
+exit $EXIT_CODE

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Répertoires à trier
+TARGETS="app tests"
+
+echo "=== Lancement de isort (tri des imports) ==="
+isort $TARGETS
+EXIT_CODE=$?
+
+echo
+
+if [ $EXIT_CODE -eq 0 ]; then
+  echo "isort : Imports bien ordonnés ✅"
+else
+  echo "isort : Des fichiers ont été modifiés pour ordonner les imports ❗"
+fi
+
+exit $EXIT_CODE

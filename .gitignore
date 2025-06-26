@@ -1,0 +1,17 @@
+# Environnement
+.env
+.venv
+
+# Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+.pytest_cache/
+.mypy_cache/
+
+# Tests
+htmlcov
+.coverage

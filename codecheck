@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Dossiers à checker
+TARGETS="app tests"
+
+echo "=== Lancement de flake8 (style PEP8) ==="
+flakecheck $TARGETS
+FLAKE8_EXIT=$?
+
+echo
+echo "=== Lancement de mypy (vérification de type) ==="
+mypy $TARGETS
+MYPY_EXIT=$?
+
+echo
+echo "=== Lancement de black (formatage automatique) ==="
+black $TARGETS
+BLACK_EXIT=$?
+
+echo
+echo "=== Lancement de isort (tri des imports) ==="
+isort $TARGETS
+ISORT_EXIT=$?
+
+echo
+echo "=== Lancement des tests avec pytest (et couverture de code) ==="
+export PYTHONPATH=$(pwd)
+pytest --cov=app --cov-report=term-missing
+PYTEST_EXIT=$?
+
+echo
+# Résumé des codes retour
+echo "=== Résultats ==="
+echo "flake8 exit code: $FLAKE8_EXIT"
+echo "mypy exit code: $MYPY_EXIT"
+echo "black exit code: $BLACK_EXIT"
+echo "isort exit code: $ISORT_EXIT"
+echo "pytest exit code: $PYTEST_EXIT"
+
+# Code retour global : 0 si tout ok, sinon 1
+if [ $FLAKE8_EXIT -eq 0 ] && [ $MYPY_EXIT -eq 0 ] && [ $PYTEST_EXIT -eq 0 ]; then
+  echo "Tous les checks sont passés avec succès ✅"
+  exit 0
+else
+  echo "Des erreurs ont été détectées ❌"
+  exit 1
+fi
