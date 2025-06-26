@@ -5,7 +5,7 @@ Spyrk est un projet Python conçu pour faciliter le développement et les tests.
 # Installation
 
 ```bash
-git clone git@github.com:JulesGirardon/Spyrk.git
+git clone git@github.com:JulesGirardon/spyrk.git
 cd spyrk
 ./install
 ```
