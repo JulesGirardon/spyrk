@@ -18,12 +18,6 @@ Spyrk is a Python project designed to facilitate modern development workflows, a
    ```bash
    ./install
    ```
-
-3. **Activate the virtual environment**
-   ```bash
-   source .venv/bin/activate
-   ```
-
 ---
 
 ## 🛠️ Requirements
