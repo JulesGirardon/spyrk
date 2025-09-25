@@ -1,17 +1,29 @@
-# Environnement
-.env
-.venv
-
-# Cache
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.pdb
-*.pkl
-.pytest_cache/
 .mypy_cache/
-
-# Tests
-htmlcov
+.pytest_cache/
+.ruff_cache/
 .coverage
+htmlcov/
+.cache/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Sphinx build
+docs/build/
+docs/_build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
