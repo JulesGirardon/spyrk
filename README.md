@@ -120,3 +120,38 @@ bin/clearcache
 5. Clean cache: `bin/clearcache`
 
 ---
+
+## 📄 Example `.gitignore`
+
+Here is a recommended `.gitignore` for your project:
+
+````gitignore
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Sphinx build
+docs/build/
+docs/_build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
