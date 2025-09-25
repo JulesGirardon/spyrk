@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}   Removing all cache files and folders  ${NC}"
+echo -e "${CYAN}========================================${NC}"
+
+# Table of cache patterns (directories end with /, files without)
+CACHE_PATTERNS=(
+    "__pycache__/"
+    ".mypy_cache/"
+    ".pytest_cache/"
+    ".ruff_cache/"
+    ".coverage/"
+    "*.pyc"
+    "*.pyo"
+)
+
+for pattern in "${CACHE_PATTERNS[@]}"; do
+    if [[ "$pattern" == */ ]]; then
+        # Remove directories
+        find . -type d -name "${pattern%/}" -exec rm -rf {} +
+    else
+        # Remove files
+        find . -type f -name "$pattern" -delete
+    fi
+done
+
+echo
+echo -e "${GREEN}✅ All cache files and folders have been removed.${NC}"

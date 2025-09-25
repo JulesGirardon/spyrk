@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/common"
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+check_uv
+check_venv
+make_lock
+
+DOCS_DIR="docs"
+
+if [ ! -f "$DOCS_DIR/Makefile" ]; then
+    error "No Makefile found in $DOCS_DIR. Please run 'sphinx-quickstart' in the docs directory first."
+fi
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}   Cleaning previous documentation build ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! uv run make -C "$DOCS_DIR" clean; then
+    echo -e "${RED}❌ Failed to clean previous documentation.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN} Generating autodoc files with sphinx-apidoc ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! uv run sphinx-apidoc -o "$DOCS_DIR/source" src -f -e; then
+    echo -e "${RED}❌ Sphinx autodoc generation failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}   Building HTML documentation with make html ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! uv run make -C "$DOCS_DIR" html; then
+    echo -e "${RED}❌ Sphinx HTML build failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${GREEN}✅ HTML documentation generated at $DOCS_DIR/build/html.${NC}"

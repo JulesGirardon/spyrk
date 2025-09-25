@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BIN_DIR="$(dirname "$0")/bin"
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}        Running mypy type checks        ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! "$BIN_DIR/mypycheck"; then
+    echo -e "${RED}❌ Mypy type check failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}         Running Ruff lint checks       ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! "$BIN_DIR/ruffcheck"; then
+    echo -e "${RED}❌ Ruff lint check failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}      Running tests with coverage       ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! "$BIN_DIR/tests"; then
+    echo -e "${RED}❌ Tests failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${GREEN}✅ All code checks passed successfully.${NC}"

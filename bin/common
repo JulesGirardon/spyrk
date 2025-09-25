@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Show error
+error() {
+    echo -e "${RED}Error: $1${NC}" >&2
+    exit 1
+}
+
+make_lock() {
+    uv lock || error "Failed to generate uv.lock file."
+}
+
+# Check venv
+check_venv() {
+    if [ ! -d ".venv" ]; then
+        uv venv .venv || error "Failed to create the virtual environment."
+        echo -e "${GREEN}Virtual environment created with uv.${NC}"
+    fi
+}
+
+# Check if uv is installed
+check_uv() {
+    if ! command -v uv &> /dev/null; then
+        error "uv is not installed. Please install it first (https://github.com/astral-sh/uv)."
+    fi
+}

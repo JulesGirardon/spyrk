@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/common"
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+check_uv
+check_venv
+make_lock
+
+if ! command -v uv run ruff &> /dev/null; then
+    echo -e "${RED}❌ Ruff is not installed in the virtual environment.${NC}" >&2
+    exit 1
+fi
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}        Checking code with Ruff         ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! uv run ruff check src tests; then
+    echo -e "${RED}❌ Ruff check failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}      Auto-fixing code with Ruff        ${NC}"
+echo -e "${CYAN}========================================${NC}"
+if ! uv run ruff check --fix src tests; then
+    echo -e "${RED}❌ Ruff auto-fix failed.${NC}" >&2
+    exit 1
+fi
+
+echo
+echo -e "${GREEN}✅ Ruff analysis completed.${NC}"
