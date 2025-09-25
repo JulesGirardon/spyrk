@@ -55,6 +55,7 @@ Run them from the project root (with the virtual environment activated):
 Scripts in main directory.
 
 | Script       | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
 | `install`    | Install all dependencies (dev, lint, tests…)                 |
 | `codecheck`  | Run type checks (mypy), lint (ruff), and tests with coverage |
 
